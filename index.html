@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Liebesgeschichte</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #fce4ec;
+            color: #880e4f;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #e91e63;
+            font-size: 40px;
+            margin-top: 50px;
+            text-shadow: 2px 2px 8px #ff4081;
+        }
+        .question {
+            font-size: 22px;
+            margin: 30px 0;
+        }
+        input[type="text"] {
+            padding: 12px;
+            margin: 10px;
+            border: 2px solid #e91e63;
+            border-radius: 12px;
+            width: 80%;
+            font-size: 18px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            background-color: #e91e63;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button:hover {
+            background-color: #c2185b;
+        }
+        #surprise {
+            display: none;
+            margin-top: 50px;
+            font-size: 26px;
+            color: #d32f2f;
+            text-align: center;
+        }
+        .heart {
+            font-size: 80px;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Unsere unendliche Liebesgeschichte</h1>
+    <p class="question" id="question1">Wann hast du zum ersten Mal gespürt, dass du mich liebst?</p>
+    <input type="text" id="firstLoveFeeling" placeholder="Gib deine Antwort hier ein...">
+    <br>
+    <button id="nextButton" onclick="nextStep()">Weiter</button>
+
+    <div id="surprise">
+        <p>Du bist der Grund, warum mein Herz jeden Tag schneller schlägt. 💖</p>
+        <span class="heart">❤️</span>
+        <p>Du und ich, für immer und ewig. 🌟</p>
+        <p>Ein besonderer Tag: 13.12.2024 ❤️</p>
+    </div>
+
+    <script>
+        function nextStep() {
+            var loveFeeling = document.getElementById('firstLoveFeeling').value;
+            if(loveFeeling.trim() !== "") {
+                // Frage 1 wird durch Frage 2 ersetzt
+                document.querySelector('.question').innerText = "Erzähl mir deinen schönsten Moment mit mir.";
+                document.getElementById('firstLoveFeeling').style.display = 'none';
+                document.getElementById('nextButton').innerText = "Antworten";
+                document.getElementById('nextButton').setAttribute("onclick", "showSurprise()");
+            } else {
+                alert("Bitte gib eine Antwort ein!");
+            }
+        }
+
+        function showSurprise() {
+            var beautifulMoment = prompt("Erzähl mir deinen schönsten Moment mit mir.");
+            if(beautifulMoment) {
+                // Die Frage 2 ausblenden und Überraschung anzeigen
+                document.getElementById('surprise').style.display = 'block';
+                document.getElementById('nextButton').style.display = 'none'; // Button ausblenden
+                document.querySelector('.question').style.display = 'none'; // Frage 2 ausblenden
+            }
+        }
+    </script>
+
+</body>
+</html>
